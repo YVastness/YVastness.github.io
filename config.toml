@@ -1,0 +1,8 @@
+baseURL = 'http://Yvastness.github.io/'
+languageCode = 'zh-CN'
+title = 'My New Hugo Site'
+# 更改使用 Hugo 创建站点时的默认主题
+theme = 'hugo-theme-learn'
+# 搜索功能
+[outputs]
+home = ["HTML", "RSS", "JSON"]
