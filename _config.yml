@@ -102,8 +102,5 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: git
-  repo: https://github.com/YVastness/YVastness.github.io.git
-  branch: master
-  token: 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
+  type: ''
 
