@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   
   
-  <title>Hello World | Vastness的博客</title>
+  <title>Vastness的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="git mv的执行过程：  创建一个和之前文件内容一样的文件，文件名为新的文件名  将原来的文件删除  将删除的文件添加到暂存区  将新建的文件添加到暂存区 123456789test on master❯ git mv 2.txt 22.txttest on master [»]❯ git statusOn branch masterChanges to be committed:  (use">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://yvastness.github.io/2023/06/02/hello-world/index.html">
+<meta property="og:title" content="Vastness的博客">
+<meta property="og:url" content="https://yvastness.github.io/2023/06/02/git%20mv%E5%92%8Cmv%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
 <meta property="og:site_name" content="Vastness的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="git mv的执行过程：  创建一个和之前文件内容一样的文件，文件名为新的文件名  将原来的文件删除  将删除的文件添加到暂存区  将新建的文件添加到暂存区 123456789test on master❯ git mv 2.txt 22.txttest on master [»]❯ git statusOn branch masterChanges to be committed:  (use">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-06-02T12:18:17.751Z">
 <meta property="article:modified_time" content="2023-06-02T12:18:17.751Z">
@@ -75,9 +75,9 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-git mv和mv的区别" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/06/02/hello-world/" class="article-date">
+    <a href="/2023/06/02/git%20mv%E5%92%8Cmv%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
   <time class="dt-published" datetime="2023-06-02T12:18:17.751Z" itemprop="datePublished">2023-06-02</time>
 </a>
     
@@ -85,36 +85,33 @@
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      Hello World
-    </h1>
-  
-
-      </header>
-    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <p><code>git mv</code>的执行过程：</p>
+<ol>
+<li><p>创建一个和之前文件内容一样的文件，文件名为新的文件名</p>
+</li>
+<li><p>将原来的文件删除</p>
+</li>
+<li><p>将删除的文件添加到暂存区</p>
+</li>
+<li><p>将新建的文件添加到暂存区</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span> on master</span><br><span class="line">❯ git <span class="built_in">mv</span> 2.txt 22.txt</span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span> on master [»]</span><br><span class="line">❯ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">&quot;git restore --staged &lt;file&gt;...&quot;</span> to unstage)</span><br><span class="line">        renamed:    2.txt -&gt; 22.txt</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><code>mv</code>的执行过程：只是重命名了一个文件。</p>
+<p>但是 git 识别文件变动为：</p>
+<ol>
+<li>创建一个和之前文件内容一样的文件，文件名为新的文件名</li>
+<li>将原来的文件删除</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span> on master</span><br><span class="line">❯ <span class="built_in">mv</span> 3.txt 33.txt</span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span> on master [✘?]</span><br><span class="line">❯ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">&quot;git add/rm &lt;file&gt;...&quot;</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">&quot;git restore &lt;file&gt;...&quot;</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line">        deleted:    3.txt</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">&quot;git add &lt;file&gt;...&quot;</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line">        33.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use <span class="string">&quot;git add&quot;</span> and/or <span class="string">&quot;git commit -a&quot;</span>)</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p><strong>结论：</strong><code>git mv</code>和<code>mv</code>的区别就是<code>mv</code>最后没有把工作区的文件添加到暂存区。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yvastness.github.io/2023/06/02/hello-world/" data-id="cliej7ytq000bbyoxf2ewcm3j" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      <a data-url="https://yvastness.github.io/2023/06/02/git%20mv%E5%92%8Cmv%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="cliej7yth0005byox4ck2cxmh" data-title="" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
       
       
@@ -124,7 +121,7 @@
     
 <nav id="article-nav">
   
-    <a href="/2023/06/02/git/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/06/02/git%20commit%20%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Neuer</strong>
       <div class="article-nav-title">
         
@@ -134,7 +131,7 @@
     </a>
   
   
-    <a href="/2023/06/02/%E6%96%9C%E6%9D%A0%E7%9A%84%E5%8C%BA%E5%88%AB/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/06/02/git%20remote%20%E5%91%BD%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Älter</strong>
       <div class="article-nav-title"></div>
     </a>
