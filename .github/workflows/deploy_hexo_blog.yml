@@ -33,6 +33,7 @@ jobs:
       
       - name: Deploy Hexo Blog
         env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
           DEPLOY_BLOG: ${{secrets.DEPLOY_BLOG}}
         run: |
           git config --global user.name "yinhaoyu"
