@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="简明的解释:  #&amp;#123;&amp;#125;是预编译处理，$ &amp;#123;&amp;#125;是字符串替换（当做占位符来用）。 mybatis 在处理#&amp;#123;&amp;#125;时，会将 sql 中的#&amp;#123;&amp;#125;替换为?号，调用 PreparedStatement 的 set 方法来赋值； mybatis在处理时，就是把 {} 时，就是把 {} 替换成变量的值。 在某些特殊场合下只能用${}，不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis中#{}和${}的区别">
+<meta property="og:url" content="https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
+<meta property="og:site_name" content="Vastness的博客">
+<meta property="og:description" content="简明的解释:  #&amp;#123;&amp;#125;是预编译处理，$ &amp;#123;&amp;#125;是字符串替换（当做占位符来用）。 mybatis 在处理#&amp;#123;&amp;#125;时，会将 sql 中的#&amp;#123;&amp;#125;替换为?号，调用 PreparedStatement 的 set 方法来赋值； mybatis在处理时，就是把 {} 时，就是把 {} 替换成变量的值。 在某些特殊场合下只能用${}，不">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-12T04:24:46.000Z">
+<meta property="article:modified_time" content="2023-06-04T09:25:33.748Z">
+<meta property="article:author" content="Yin Haoyu">
+<meta property="article:tag" content="Mybatis">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Mybatis中#{}和${}的区别</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/YVastness">项目</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2022/12/02/git/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&text=Mybatis中#{}和${}的区别"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&title=Mybatis中#{}和${}的区别"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&is_video=false&description=Mybatis中#{}和${}的区别"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Mybatis中#{}和${}的区别&body=Check out this article: https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&title=Mybatis中#{}和${}的区别"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&title=Mybatis中#{}和${}的区别"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&title=Mybatis中#{}和${}的区别"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&title=Mybatis中#{}和${}的区别"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&name=Mybatis中#{}和${}的区别&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&t=Mybatis中#{}和${}的区别"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%B0%E6%AD%A4%E7%BB%93%E6%9D%9F%E5%8D%B3%E5%8F%AF"><span class="toc-number">1.</span> <span class="toc-text">到此结束即可</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Esql%E6%B3%A8%E9%87%8A%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E9%87%8A"><span class="toc-number">1.1.</span> <span class="toc-text">关于sql注释的简单解释</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Mybatis中#{}和${}的区别
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Yin Haoyu</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-11-12T04:24:46.000Z" class="dt-published" itemprop="datePublished">2022-11-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Mybatis/" rel="tag">Mybatis</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>简明的解释:</p>
+<ul>
+<li><code>#&#123;&#125;</code>是预编译处理，<code>$ &#123;&#125;</code>是字符串替换（当做占位符来用）。</li>
+<li>mybatis 在处理<code>#&#123;&#125;</code>时，会将 sql 中的<code>#&#123;&#125;</code>替换为?号，调用 PreparedStatement 的 set 方法来赋值；</li>
+<li>mybatis在处理时，就是把 {} 时，就是把 {} 替换成变量的值。</li>
+<li>在某些特殊场合下只能用${}，不能用#{}。例如：在使用排序时<code>ORDER BY $&#123;id&#125;</code>，如果使用#{id}，则会被解析成ORDER BY “id”,这显然是一种错误的写法。</li>
+<li>使用 #{} 可以有效的防止SQL注入，提高系统安全性。</li>
+</ul>
+<h2 id="到此结束即可"><a href="#到此结束即可" class="headerlink" title="到此结束即可"></a><strong>到此结束即可</strong></h2><p><strong>解决SQL注入的办法就是预编译处理</strong></p>
+<p><strong>使用 #{} 进行预编译处理</strong>，可以有效的防止SQL注入，提高系统安全性。</p>
+<p>        预编译的机制。预编译是提前对SQL语句进行预编译，而其后注入的参数将不会再进行SQL编译。我们知道，SQL注入是发生在编译的过程中，因为注入sql语句常用的字符如:单引号**(‘)**和井号(#)进行恶意地闭合和注释，改变了我萌的原有句子，最后被编译执行了恶意操作。而预编译机制则可以很好的防止SQL注入。</p>
+<p>想了解提升sql注入的可以试着理解下面的一点知识</p>
+<h3 id="关于sql注释的简单解释"><a href="#关于sql注释的简单解释" class="headerlink" title="关于sql注释的简单解释"></a><strong>关于sql注释的简单解释</strong></h3><p><strong>假设下方语句是我萌自己写的做登录用户的java后台部分语句，我们想的是只有账号密码正确才可以登录</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span><span class="string">&quot;select * from table where id = &#x27;&quot;</span>+ admin +<span class="string">&quot;&#x27;and password =&#x27;&quot;</span>+password+<span class="string">&quot;&#x27;&quot;</span>; <span class="comment">//拼接参数</span></span><br><span class="line"></span><br><span class="line"><span class="type">ResultSet</span> <span class="variable">resultResultset</span> <span class="operator">=</span> statement.executeQuery(sql);<span class="comment">//执行sql语句</span></span><br></pre></td></tr></table></figure>
+
+<p>但如果提交表单的数据是 <strong>admin的是 ‘ or 1 &#x3D; 1 #</strong>   然后password 随便填吧 比如 hj</p>
+<blockquote>
+<p><strong>那么sql句子变成:</strong> </p>
+<p><strong>select * from table where id &#x3D; ‘ ‘ or 1 &#x3D; 1 # ‘ and password &#x3D;’ hj ‘;</strong></p>
+</blockquote>
+<p><strong>注意这时句子中的 # 井号会把后面的 ‘ and password &#x3D;’ hj ‘; 注释掉而无法判断，因为or 1 &#x3D; 1 这一句会告诉数据库是正确的，然后我萌就能基于这个原理实现偷偷给自己的数据库干坏事了。</strong></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/YVastness">项目</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%B0%E6%AD%A4%E7%BB%93%E6%9D%9F%E5%8D%B3%E5%8F%AF"><span class="toc-number">1.</span> <span class="toc-text">到此结束即可</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Esql%E6%B3%A8%E9%87%8A%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E9%87%8A"><span class="toc-number">1.1.</span> <span class="toc-text">关于sql注释的简单解释</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&text=Mybatis中#{}和${}的区别"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&title=Mybatis中#{}和${}的区别"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&is_video=false&description=Mybatis中#{}和${}的区别"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Mybatis中#{}和${}的区别&body=Check out this article: https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&title=Mybatis中#{}和${}的区别"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&title=Mybatis中#{}和${}的区别"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&title=Mybatis中#{}和${}的区别"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&title=Mybatis中#{}和${}的区别"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&name=Mybatis中#{}和${}的区别&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yvastness.github.io/2022/11/12/Mybatis%E4%B8%AD%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/&t=Mybatis中#{}和${}的区别"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2023
+    Yin Haoyu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/YVastness">项目</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

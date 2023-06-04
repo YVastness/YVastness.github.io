@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="本文转载自Pro Git(中文版)    本节讲解命令：git push &lt;远程仓库&gt; &lt;本地分支&gt;:&lt;远程分支&gt;、git fetch &lt;远程仓库&gt;、git pull &lt;远程仓库&gt; &lt;远程分支&gt;:&lt;本地分支&gt;。 远程分支  远程分支（remote branch）是对远程仓库中的分支的索引。它们是一些无法移动的本地">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vastness的博客">
+<meta property="og:url" content="https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/index.html">
+<meta property="og:site_name" content="Vastness的博客">
+<meta property="og:description" content="本文转载自Pro Git(中文版)    本节讲解命令：git push &lt;远程仓库&gt; &lt;本地分支&gt;:&lt;远程分支&gt;、git fetch &lt;远程仓库&gt;、git pull &lt;远程仓库&gt; &lt;远程分支&gt;:&lt;本地分支&gt;。 远程分支  远程分支（remote branch）是对远程仓库中的分支的索引。它们是一些无法移动的本地">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/YVastness/picture-upload/main/bf60f1b6122646b8b36e23e94ae4acfc.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/YVastness/picture-upload/main/48dd488232ad4fdc8ad21b89e1a75fba.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/YVastness/picture-upload/main/734f9ce89a7e4eee8560a3faae58a0e3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/YVastness/picture-upload/main/31d0c08c26354283a94a32c2ba9b4e09.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/YVastness/picture-upload/main/5278a26b39f54d7bac2a3364d1ac9016.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/YVastness/picture-upload/main/ff70ba6ad9b24923be58593ea089f680.png">
+<meta property="article:published_time" content="2023-06-04T09:25:33.748Z">
+<meta property="article:modified_time" content="2023-06-04T09:25:33.748Z">
+<meta property="article:author" content="Yin Haoyu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/YVastness/picture-upload/main/bf60f1b6122646b8b36e23e94ae4acfc.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Vastness的博客</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/YVastness">项目</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2023/06/04/MySQL%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92(explain%E5%91%BD%E4%BB%A4)%E4%B8%ADType%E7%9A%84%E6%B5%85%E6%9E%90/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&t="><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF"><span class="toc-number">1.</span> <span class="toc-text">远程分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF"><span class="toc-number">2.</span> <span class="toc-text">拉取远程分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E9%80%81%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF"><span class="toc-number">3.</span> <span class="toc-text">推送本地分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%9F%E8%B8%AA%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF"><span class="toc-number">4.</span> <span class="toc-text">跟踪远程分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%88%9B%E5%BB%BA%E7%9A%84%E8%B7%9F%E8%B8%AA%E5%88%86%E6%94%AF"><span class="toc-number">5.</span> <span class="toc-text">自动创建的跟踪分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E8%AE%BE%E7%BD%AE%E8%B7%9F%E8%B8%AA%E5%88%86%E6%94%AF"><span class="toc-number">6.</span> <span class="toc-text">手动设置跟踪分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF"><span class="toc-number">7.</span> <span class="toc-text">删除远程分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">8.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-fetch"><span class="toc-number">9.</span> <span class="toc-text">git fetch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-pull"><span class="toc-number">10.</span> <span class="toc-text">git pull</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-push"><span class="toc-number">11.</span> <span class="toc-text">git push</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Yin Haoyu</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-06-04T09:25:33.748Z" class="dt-published" itemprop="datePublished">2023-06-04</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <blockquote>
+<p>本文转载自<a target="_blank" rel="noopener" href="https://gitee.com/progit/3-Git-%E5%88%86%E6%94%AF.html#3.5-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF">Pro Git(中文版)</a></p>
+</blockquote>
+<p>  <strong>本节讲解命令</strong>：<code>git push &lt;远程仓库&gt; &lt;本地分支&gt;:&lt;远程分支&gt;</code>、<code>git fetch &lt;远程仓库&gt;</code>、<code>git pull &lt;远程仓库&gt; &lt;远程分支&gt;:&lt;本地分支&gt;</code>。</p>
+<h2 id="远程分支"><a href="#远程分支" class="headerlink" title="远程分支"></a>远程分支</h2><p>  远程分支（remote branch）是对远程仓库中的分支的索引。它们是一些无法移动的本地分支；只有在 Git 进行网络交互时才会更新。远程分支就像是书签，提醒着你上次连接远程仓库时上面各分支的位置。</p>
+<p>  我们用 <code>远程仓库名/分支名</code> 这样的形式表示远程分支。比如我们想看看上次和 origin 仓库进行通讯时 master 分支的样子，就应该查看 <code>origin/master</code> 分支。如果你和同伴一起修复某个问题，但他们先推送了一个 iss53 分支到远程仓库，虽然你可能也有一个本地的 iss53 分支，但指向服务器上最新更新的却应该是 <code>origin/iss53</code> 分支。</p>
+<p>  可能有点乱，我们不妨举例说明。假设你们团队有个地址为 git.ourcompany.com 的 Git 服务器。如果你从这里克隆，Git 会自动为你将此远程仓库命名为 origin，并下载其中所有的数据，建立一个指向它的 master 分支的指针，在本地命名为 <code>origin/master</code>，但你无法在本地更改其数据。接着，Git 建立一个属于你自己的本地 master 分支，始于 origin 上 master 分支相同的位置，你可以就此开始工作。<br><img src="https://raw.githubusercontent.com/YVastness/picture-upload/main/bf60f1b6122646b8b36e23e94ae4acfc.png" alt="在这里插入图片描述"><br>  如果你在本地 master 分支做了些改动，与此同时，其他人向 git.ourcompany.com 推送了他们的更新，那么服务器上的 master 分支就会向前推进，而于此同时，你在本地的提交历史正朝向不同方向发展。不过只要你不和服务器通讯，你的 <code>origin/master</code> 指针仍然保持原位不会移动。<br><img src="https://raw.githubusercontent.com/YVastness/picture-upload/main/48dd488232ad4fdc8ad21b89e1a75fba.png" alt="在这里插入图片描述"></p>
+<h2 id="拉取远程分支"><a href="#拉取远程分支" class="headerlink" title="拉取远程分支"></a>拉取远程分支</h2><p>  可以运行 <code>git fetch origin</code> 来同步远程服务器上的数据到本地。该命令首先找到 origin 是哪个服务器（本例为 git.ourcompany.com），从上面获取你尚未拥有的数据，更新你本地的数据库，然后把 <code>origin/master</code> 的指针移到它最新的位置上。<br><img src="https://raw.githubusercontent.com/YVastness/picture-upload/main/734f9ce89a7e4eee8560a3faae58a0e3.png" alt="在这里插入图片描述"><br>  为了演示拥有多个远程分支（在不同的远程服务器上）的项目是如何工作的，我们假设你还有另一个仅供你的敏捷开发小组使用的内部服务器 git.team1.ourcompany.com。可以用第二章中提到的 git remote add 命令把它加为当前项目的远程分支之一。我们把它命名为 teamone，以便代替完整的 Git URL 以方便使用。<br><img src="https://raw.githubusercontent.com/YVastness/picture-upload/main/31d0c08c26354283a94a32c2ba9b4e09.png" alt="在这里插入图片描述"><br>  现在你可以用 <code>git fetch teamone</code> 来获取小组服务器上你还没有的数据了。由于当前该服务器上的内容是你 origin 服务器上的子集，Git 不会下载任何数据，而只是简单地创建一个名为 <code>teamone/master</code> 的远程分支，指向 teamone 服务器上 master 分支所在的提交对象 31b8e。<br><img src="https://raw.githubusercontent.com/YVastness/picture-upload/main/5278a26b39f54d7bac2a3364d1ac9016.png" alt="在这里插入图片描述"><br>  还可以用 <code>git pull &lt;远程仓库&gt; &lt;远程分支&gt;:&lt;本地分支&gt;</code> 来进行拉取数据并且合并分支。</p>
+<h2 id="推送本地分支"><a href="#推送本地分支" class="headerlink" title="推送本地分支"></a>推送本地分支</h2><p>  要想和其他人分享某个本地分支，你需要把它推送到一个你拥有写权限的远程仓库。<br>  你创建的本地分支不会因为你的提交操作而被自动同步到你引入的远程服务器上，你需要明确地执行推送分支的操作。换句话说，对于无意分享的分支，你尽管保留为私人分支好了，而只推送那些协同工作要用到的特性分支。<br>  如果你有个叫 serverfix 的分支需要和他人一起开发，可以运行 <code>git push 远程仓库名 分支名</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin serverfix</span><br><span class="line">    Counting objects: 20, done.</span><br><span class="line">    Compressing objects: 100% (14/14), done.</span><br><span class="line">    Writing objects: 100% (15/15), 1.74 KiB, done.</span><br><span class="line">    Total 15 (delta 5), reused 0 (delta 0)</span><br><span class="line">    To git@github.com:schacon/simplegit.git</span><br><span class="line">    * [new branch] serverfix -&gt; serverfix</span><br></pre></td></tr></table></figure>
+
+<p>  这里其实走了一点捷径。Git 自动把 serverfix 分支名扩展为 <code>refs/heads/serverfix:refs/heads/serverfix</code>，意为“取出我在本地的 serverfix 分支，推送到远程仓库的 serverfix 分支中去”。我们将在第九章进一步介绍 <code>refs/heads/</code> 部分的细节，不过一般使用的时候都可以省略它。也可以运行 <code>git push origin serverfix:serverfix</code> 来实现相同的效果，它的意思是“上传我本地的 serverfix 分支到远程仓库中去，仍旧称它为 serverfix 分支”。通过此语法，你可以把本地分支推送到某个命名不同的远程分支：若想把远程分支叫作 awesomebranch，可以用 <code>git push origin serverfix:awesomebranch</code> 来推送数据。<br>  接下来，当你的协作者再次从服务器上获取数据时，他们将得到一个新的远程分支 <code>origin/serverfix</code>，并指向服务器上 serverfix 所指向的版本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch origin</span><br><span class="line">    remote: Counting objects: 20, done.</span><br><span class="line">    remote: Compressing objects: 100% (14/14), done.</span><br><span class="line">    remote: Total 15 (delta 5), reused 0 (delta 0)</span><br><span class="line">    Unpacking objects: 100% (15/15), done.</span><br><span class="line">    From git@github.com:schacon/simplegit</span><br><span class="line">    * [new branch] serverfix -&gt; origin/serverfix</span><br></pre></td></tr></table></figure>
+
+<p>  值得注意的是，在 fetch 操作下载好新的远程分支之后，你仍然无法在本地编辑该远程仓库中的分支。换句话说，在本例中，你不会有一个新的 serverfix 分支，有的只是一个你无法移动的 origin&#x2F;serverfix 指针。</p>
+<p>  如果要把该远程分支的内容合并到当前分支，可以运行 <code>git merge origin/serverfix</code>。如果想要一份自己的 serverfix 来开发，可以在远程分支的基础上分化出一个新的分支来：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b serverfix origin/serverfix</span><br><span class="line">    Branch serverfix set up to track remote branch refs/remotes/origin/serverfix.</span><br><span class="line">    Switched to a new branch &quot;serverfix&quot;</span><br></pre></td></tr></table></figure>
+
+<p>  这会切换到新建的 serverfix 本地分支，其内容同远程分支 origin&#x2F;serverfix 一致，这样你就可以在里面继续开发了。</p>
+<h2 id="跟踪远程分支"><a href="#跟踪远程分支" class="headerlink" title="跟踪远程分支"></a>跟踪远程分支</h2><p>  从远程分支 checkout 出来的本地分支，称为跟踪分支 (tracking branch)。<strong>跟踪分支是一种和某个远程分支有直接联系的本地分支</strong>。在跟踪分支里输入 <code>git push</code>，Git 会自行推断应该向哪个服务器的哪个分支推送数据。同样，在这些分支里运行 <code>git pull</code> 会获取所有远程索引，并把它们的数据都合并到本地分支中来。</p>
+<h2 id="自动创建的跟踪分支"><a href="#自动创建的跟踪分支" class="headerlink" title="自动创建的跟踪分支"></a>自动创建的跟踪分支</h2><p>  在克隆仓库时，Git 通常会自动创建一个名为 master 的分支来跟踪 origin&#x2F;master。这正是 git push 和 git pull 一开始就能正常工作的原因。当然，你可以随心所欲地设定为其它跟踪分支，比如 origin 上除了 master 之外的其它分支。刚才我们已经看到了这样的一个例子：<code>git checkout -b [分支名] [远程名]/[分支名]</code>。如果你有 1.6.2 以上版本的 Git，还可以用 –track 选项简化：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout --track origin/serverfix</span><br><span class="line">    Branch serverfix set up to track remote branch refs/remotes/origin/serverfix.</span><br><span class="line">    Switched to a new branch &quot;serverfix&quot;</span><br></pre></td></tr></table></figure>
+
+<p>  要为本地分支设定不同于远程分支的名字，只需在第一个版本的命令里换个名字：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b sf origin/serverfix</span><br><span class="line">    Branch sf set up to track remote branch refs/remotes/origin/serverfix.</span><br><span class="line">    Switched to a new branch &quot;sf&quot;</span><br></pre></td></tr></table></figure>
+
+<p>  现在你的本地分支 sf 会自动将推送和抓取数据的位置定位到 origin&#x2F;serverfix 了。</p>
+<h2 id="手动设置跟踪分支"><a href="#手动设置跟踪分支" class="headerlink" title="手动设置跟踪分支"></a>手动设置跟踪分支</h2><p>  可以通过 <code>git branch -vv</code> 来查看那些分支是跟踪分支。<br><img src="https://raw.githubusercontent.com/YVastness/picture-upload/main/ff70ba6ad9b24923be58593ea089f680.png" alt="在这里插入图片描述"><br>  第一列是本地分支名，第二列是该分支对应的 SHA-1 值，第三列[ ]中蓝色的就是跟踪的远程分支，之后跟着的是最后一次提交信息。</p>
+<p>  可以通过<code>git branch --set-upstream-to=&lt;本地设置的远程仓库名&gt;/&lt;远程分支&gt; &lt;本地分支&gt;</code>命令为本地分支设置跟踪的远程分支。</p>
+<h2 id="删除远程分支"><a href="#删除远程分支" class="headerlink" title="删除远程分支"></a>删除远程分支</h2><p>  如果不再需要某个远程分支了，比如搞定了某个特性并把它合并进了远程的 master 分支（或任何其他存放稳定代码的分支），可以用这个非常无厘头的语法来删除它：<code>git push [远程名] :[分支名]</code>。如果想在服务器上删除 serverfix 分支，运行下面的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin :serverfix</span><br><span class="line">    To git@github.com:schacon/simplegit.git</span><br><span class="line">    - [deleted] serverfix</span><br></pre></td></tr></table></figure>
+
+<p>咚！服务器上的分支没了。你最好特别留心这一页，因为你一定会用到那个命令，而且你很可能会忘掉它的语法。有种方便记忆这条命令的方法：记住我们不久前见过的 <code>git push [远程名] [本地分支]:[远程分支]</code> 语法，<strong>如果省略 [本地分支]，那就等于是在说“在这里提取空白然后把它变成[远程分支]”</strong>。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><h2 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch"></a>git fetch</h2><p>  <strong>用法</strong>：<code>git fetch &lt;远程仓库&gt;</code>。<br>  <strong>作用</strong>：获取远程仓库的更新到本地仓库中对应的<code>远程仓库/远程分支</code>这个分支上。<br>  PS：这个分支只能读，不能写。如果需要在这个分支上进行开发，可以在这个分支上新建一个本地分支，然后进行开发。</p>
+<h2 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h2><p>  <strong>用法</strong>：<code>git pull &lt;远程仓库&gt; &lt;远程分支&gt;:&lt;本地分支&gt;</code>。<br>  PS:<code>:</code> 表示数据流向，上面的命令表示数据从远程分支流向本地分支。</p>
+<p>  <strong>作用</strong>：获取指定的远程分支的更新并合并到本地分支上。</p>
+<p>  <strong>省略</strong>：<br>  1. 如果指定的本地分支是当前分支，该命令可以省略为 <code>git pull &lt;远程仓库&gt; &lt;远程分支&gt;</code>。<br>  2. 如果当前分支是跟踪分支，该命令可以省略为 <code>git pull</code>。</p>
+<h2 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h2><p>  <strong>用法</strong>：<code>git push &lt;远程仓库&gt; &lt;本地分支&gt;:&lt;远程分支&gt;</code>。<br>  PS:<code>:</code> 表示数据流向，上面的命令表示数据从本地分支流向远程分支。</p>
+<p>  <strong>作用</strong>：将指定的本地分支推送到远程分支上。</p>
+<p>  <strong>省略</strong>：<br>  1. 如果指定的本地分支和远程分支名相同，该命令可以省略为 <code>git push &lt;远程仓库&gt; &lt;本地分支&gt;</code>。<br>  2. 如果指定的本地分支是跟踪分支，该命令可以省略为 <code>git push</code>。<br>  3. 删除远程分支 <code>git push &lt;远程仓库&gt; :&lt;远程分支&gt;</code>。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/YVastness">项目</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF"><span class="toc-number">1.</span> <span class="toc-text">远程分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF"><span class="toc-number">2.</span> <span class="toc-text">拉取远程分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E9%80%81%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF"><span class="toc-number">3.</span> <span class="toc-text">推送本地分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%9F%E8%B8%AA%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF"><span class="toc-number">4.</span> <span class="toc-text">跟踪远程分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%88%9B%E5%BB%BA%E7%9A%84%E8%B7%9F%E8%B8%AA%E5%88%86%E6%94%AF"><span class="toc-number">5.</span> <span class="toc-text">自动创建的跟踪分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E8%AE%BE%E7%BD%AE%E8%B7%9F%E8%B8%AA%E5%88%86%E6%94%AF"><span class="toc-number">6.</span> <span class="toc-text">手动设置跟踪分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF"><span class="toc-number">7.</span> <span class="toc-text">删除远程分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">8.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-fetch"><span class="toc-number">9.</span> <span class="toc-text">git fetch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-pull"><span class="toc-number">10.</span> <span class="toc-text">git pull</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-push"><span class="toc-number">11.</span> <span class="toc-text">git push</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yvastness.github.io/2023/06/04/Git%20%E5%88%86%E6%94%AF%E7%AF%87%E4%B9%8B%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/&t="><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2023
+    Yin Haoyu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/YVastness">项目</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
