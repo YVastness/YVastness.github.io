@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1685868104679,
@@ -16,6 +16,10 @@
                 {
                     "date": 1685868135338,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n       run: |\n         git clone \"https://${{ secrets.GH_REF }}\" deploy_git\n         mv ./deploy_git/.git ./public\n         cd ./public\n-        git config user.name \"填入自己的github用户名\"\n-        git config user.email \"填入自己的github邮箱\"\n+        git config user.name \"YVastness\"\n+        git config user.email \"1916286435@qq.com\"\n         git add .\n         git commit -m \"GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')\"\n         git push --force --quiet \"https://${{ secrets.GH_TOKEN }}@${{ secrets.GH_REF }}\" main:main\n"
+                },
+                {
+                    "date": 1685868531105,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,5 +38,5 @@\n         git config user.name \"YVastness\"\n         git config user.email \"1916286435@qq.com\"\n         git add .\n         git commit -m \"GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')\"\n-        git push --force --quiet \"https://${{ secrets.GH_TOKEN }}@${{ secrets.GH_REF }}\" main:main\n+        git push --force --quiet \"https://${{ secrets.HEXO_DEPLOY }}@${{ secrets.GH_REF }}\" main:main\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1685868104679,
