@@ -103,7 +103,7 @@ theme: cactus # anzhiyu # landscape
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-    repo: https://github.com/YVastness/YVastness.github.io.git
+    repo: 'https://github.com/YVastness/YVastness.github.io.git'
     branch: master
     # 默认提交信息： Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}
     # message: ${{ github.event.head_commit.message }} # 直接将提交消息传输到 GitHub Pages 存储库
