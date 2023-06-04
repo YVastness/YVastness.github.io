@@ -8,17 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="SpringMVC执行流程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vastness的博客">
-<meta property="og:url" content="https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/index.html">
+<meta property="og:title" content="SpringMVC执行流程">
+<meta property="og:url" content="https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Vastness的博客">
 <meta property="og:description" content="SpringMVC执行流程">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/YVastness/picture-upload/main/image-20230321165224329-1679388748057-1-1679388752074-3-1679388755177-5.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/YVastness/picture-upload/main/image-20230321165319398-1679388801588-7-1679388804462-9.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/YVastness/picture-upload/main/20201125214311471.png">
-<meta property="article:published_time" content="2023-06-04T10:15:24.265Z">
-<meta property="article:modified_time" content="2023-06-04T10:15:24.265Z">
+<meta property="article:published_time" content="2022-11-11T12:24:46.000Z">
+<meta property="article:modified_time" content="2023-06-04T10:53:12.084Z">
 <meta property="article:author" content="Yin Haoyu">
+<meta property="article:tag" content="SpringMVC">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/YVastness/picture-upload/main/image-20230321165224329-1679388748057-1-1679388752074-3-1679388755177-5.png">
     
@@ -40,7 +41,7 @@
       
     
     <!-- title -->
-    <title>Vastness的博客</title>
+    <title>SpringMVC执行流程</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -77,6 +78,8 @@
      --><!--
        --><li><a target="_blank" rel="noopener" href="http://github.com/YVastness">项目</a></li><!--
      --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
        --><li><a href="/about/">关于</a></li><!--
      -->
       </ul>
@@ -85,10 +88,8 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="上一篇" href="/2023/06/04/MySQL%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92(explain%E5%91%BD%E4%BB%A4)%E4%B8%ADType%E7%9A%84%E6%B5%85%E6%9E%90/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="上一篇" href="/2022/11/11/MySQL%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92(explain%E5%91%BD%E4%BB%A4)%E4%B8%ADType%E7%9A%84%E6%B5%85%E6%9E%90/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-        
-        <li><a class="icon" aria-label="下一篇" href="/2023/06/04/git%20mv%E5%92%8Cmv%E7%9A%84%E5%8C%BA%E5%88%AB/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -101,17 +102,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&t="><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&text=SpringMVC执行流程"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title=SpringMVC执行流程"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&is_video=false&description=SpringMVC执行流程"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SpringMVC执行流程&body=Check out this article: https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title=SpringMVC执行流程"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title=SpringMVC执行流程"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title=SpringMVC执行流程"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title=SpringMVC执行流程"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&name=SpringMVC执行流程&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&t=SpringMVC执行流程"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -131,7 +132,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        
+        SpringMVC执行流程
     </h1>
 
 
@@ -143,7 +144,7 @@
       
     <div class="postdate">
       
-        <time datetime="2023-06-04T10:15:24.265Z" class="dt-published" itemprop="datePublished">2023-06-04</time>
+        <time datetime="2022-11-11T12:24:46.000Z" class="dt-published" itemprop="datePublished">2022-11-11</time>
         
       
     </div>
@@ -152,6 +153,11 @@
       
 
       
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/SpringMVC/" rel="tag">SpringMVC</a>
+    </div>
+
 
     </div>
   </header>
@@ -180,6 +186,8 @@
         
           <li><a target="_blank" rel="noopener" href="http://github.com/YVastness">项目</a></li>
         
+          <li><a href="/search/">搜索</a></li>
+        
           <li><a href="/about/">关于</a></li>
         
       </ul>
@@ -194,17 +202,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yvastness.github.io/2023/06/04/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&t="><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&text=SpringMVC执行流程"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title=SpringMVC执行流程"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&is_video=false&description=SpringMVC执行流程"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SpringMVC执行流程&body=Check out this article: https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title=SpringMVC执行流程"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title=SpringMVC执行流程"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title=SpringMVC执行流程"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&title=SpringMVC执行流程"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&name=SpringMVC执行流程&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yvastness.github.io/2022/11/11/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/&t=SpringMVC执行流程"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -239,6 +247,8 @@
        --><li><a href="/archives/">归档</a></li><!--
      --><!--
        --><li><a target="_blank" rel="noopener" href="http://github.com/YVastness">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      -->
