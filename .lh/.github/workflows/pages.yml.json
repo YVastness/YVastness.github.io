@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1685871335400,
@@ -32,6 +32,10 @@
                 {
                     "date": 1685872436906,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n       id: replace\n       run: |\n         tagname=$(date +%y%j%H%M)\n         sed -i \"s/hexoblog/hexoblog@$tagname/g\" _config.yml\n-        sed -i \"s/hexoblog/hexoblog@$tagname/g\" themes/cactus/_config.yml\n+        sed -i \"s/hexoblog/hexoblog@$tagname/g\" _config.cactus.yml\n         echo \"::set-output name=tagname::$tagname\"        \n     - name: Installation\n       run: |\n         npm install\n"
+                },
+                {
+                    "date": 1685872643319,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n       with:\n         submodules: true\n     - uses: actions/setup-node@master\n       with:\n-        node-version: 12.x  \n+        node-version: 16.x  \n     - name: replace cdn url\n       id: replace\n       run: |\n         tagname=$(date +%y%j%H%M)\n"
                 }
             ],
             "date": 1685871335400,
