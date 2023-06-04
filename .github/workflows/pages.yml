@@ -11,10 +11,32 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Build and Deploy
-        uses: theme-keep/hexo-deploy-github-pages-action@master # 使用专门部署 Hexo 到 GitHub pages 的 action
-        env:
-          PERSONAL_TOKEN: ${{ secrets.HEXO_DEPLOY }} # secret 名
-          PUBLISH_REPOSITORY: YVastness/YVastness.github.io # 公共仓库，格式：GitHub 用户名/仓库名
-          BRANCH: gh-pages # 分支，填 gh-pages 就行
-          PUBLISH_DIR: ./public # 部署 public 目录下的文件
+      # from: https://github.com/actions/setup-node
+      - name: Setup Node.js 12.x
+        uses: actions/setup-node@master
+        with:
+          node-version: "12.x"
+
+      #安装依赖(包含yuque-hexo，此处无需安装) from https://github.com/x-cold/yuque-hexo
+      - name: Install dependencies
+        run: |
+          npm install hexo-cli -g
+          npm install
+          npm install hexo-deployer-git --save
+          
+      # 生成可访问的文档
+      - name: hexo generate
+        run: |
+          hexo clean
+          hexo g
+          
+      # 生成pages且推送到文件仓库 from https://github.com/peaceiris/actions-gh-pages
+      - name: Deploy hexo to Github pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.HEXO_DEPLOY }} # 此处为 hexo-deploy-key
+          external_repository: YVastness/YVastness.github.io
+          publish_branch: master
+          publish_dir: ./public
+          commit_message: deploy githubPage
+          # commit_message: ${{ github.event.head_commit.message }}
