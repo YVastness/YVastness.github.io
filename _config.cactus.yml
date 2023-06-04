@@ -1,30 +1,111 @@
 ##############################################################################
-# 主题配置文件
+# Content
 ##############################################################################
 
+# Link to a page that gives an overview of all your projects.
+# This can be an external link (e.g., to you GitHub profile) or to another
+# page within your website.
+projects_url: http://github.com/YVastness
+
+# Set the page direction to RTL or LTR. default is LTR. (if you set it 'rtl', the 'vazir' font will be loaded.)
+direction: ltr
+# Configure the navigation menu.
+# A pair 'Key: url' will result in a link to 'url' with the name 'Key' in the
+# navigation menu. Optionally, you can add translations for the 'Key' in
+# languages/*.yml
+nav:
+  home: /
+  articles: /archives/
+  projects: http://github.com/YVastness
+  about: /about/
+
+
+# Links to your social media accounts.
+# The 'icon' keys should correspond to Fontawesome icon names
+# (see https://fontawesome.com/icons?d=gallery&s=brands);
+# only 'mail' is an exception.
+# You can optionally add a 'label' key to set the title attribute on the link. 
+# 'icon' value will be used as title when 'label' is missing.
+social_links:
+  -
+    icon: github
+    link: http://github.com/YVastness
+  -
+    icon: mail
+    link: mailto:1916286435@qq.com
+  -
+    icon: bilibili
+    link: https://space.bilibili.com/302345007?spm_id_from=333.1007.0.0
+
+# Customize the overview with displaying a tagcloud on the index page.
+# Options: https://hexo.io/docs/helpers.html#tagcloud
+tags_overview: false
+
+# Customize the overview with the most recent blog posts on the index page.
+# Options:
+#   - show_all_posts: whether to show all available posts.
+#   - post_count: whether to show only the x most recent posts.
+#   - sort_updated: sort posts by last modification date instead of creation date.
+posts_overview:
+  show_all_posts: false
+  post_count: 5
+  sort_updated: false
+
+# Customize the archive view.
+# Options:
+#   - sort_updated: sort posts by last modification date instead of creation date.
+# Note: this does not work together with pagination, since the pagination
+# plugin will sort pages by date of creation.
+archive:
+  sort_updated: false
+
+# Customize the article view.
+# Options:
+#   - show_updated: show the last modification date.
+post:
+  show_updated: false
+
+# Customize the copyright years
+# Note: if start_year/end_year not provided, will use current year.
+copyright:
+  start_year: 2016
+  end_year:
+
+# Customize the 404 page
+# Options:
+#   - enabled: whether to enable the 404 page (404.html).
+error_404:
+  enabled: true
+  title: "404 Page Not Found"
+  description: "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable."
+
+
 ##############################################################################
-# 头部配置项
+# Look and Feel
 ##############################################################################
 
-# 网站头部的logo配置.
-# 选项:
-#   - enabled: 显示或者隐藏logo.
-#   - width: 显示logo的宽度(px作为单位)
-#   - height: 显示logo的高度(px作为单位)
-#   - url: logo文件的位置
-#   - gravatar: 是否使用你的 Gravatar 作为logo
+# Customize the logo (i.e., the cactus) in the header.
+# Options:
+#   - enabled: whether to show (true) or hide (false) the logo.
+#   - width: width of the logo in pixel units
+#   - height: height of the logo in pixel units
+#   - url: where the logo can be found
+#   - gravatar: whether to use your Gravatar as the logo
+#   - grayout: whether to enable a hover effect on the logo
 logo:
   enabled: true
   width: 50
   height: 50
-  url: /images/Photo_0411_1a.jpg
+  url: /images/app_mw_weblogic_domain.png
   gravatar: false
+# 鼠标移动到logo上，发生变化
+  grayout: false
 
-# 自定义 favicons.
-# 支持对桌面、安卓、苹果三种设备的 icons 配置:
-#   - desktop: 经典 favion.ico 文件.
-#   - android: 一个 192x192 的PNG文件.
-#   - apple:  一个 180x180 的PNG file.
+# Customize the favicons.
+# Cactus supports a limited set of the three most important icons:
+#   - desktop: The classic favion.ico file.
+#   - android: A 192x192 PNG file.
+#   - apple:  A 180x180 PNG file.
 # These can be generated with http://realfavicongenerator.net/
 # Options:
 #   - url: where the icon can be found
@@ -47,7 +128,7 @@ favicon:
 # Set the color scheme.
 # Available color schemes are 'dark', 'light', 'classic' and 'white'.
 # Alternatively, add your own custom color scheme to source/css/_colors.
-colorscheme: light
+colorscheme: white
 
 # Maximal width of the page in rem units.
 page_width: 48

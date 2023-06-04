@@ -1,10 +1,8 @@
 ---
-created: 2023-04-12T12:24:46 (UTC +08:00)
-tags: [Git,前端开发,程序员]
-source: https://zhuanlan.zhihu.com/p/90281637
+title: Git 提交规范
+date: 2023-04-12 12:24:46
+tags: [Git,规范]
 ---
-
-# git commit 提交规范
 
 ```
 <type>(<scope>): <subject>
