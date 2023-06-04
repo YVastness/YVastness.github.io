@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1685871335400,
@@ -20,6 +20,14 @@
                 {
                     "date": 1685871971245,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n       run: |\n         npm install\n         npm install -g hexo-cli        \n     - name: Generate\n-      run: hexo clean && hexo g && && hexo d\n+      run: hexo clean && hexo g && hexo d\n     - name: Deploy\n       uses: peaceiris/actions-gh-pages@v3\n       with:\n         github_token: ${{ secrets.GITHUB_TOKEN }}\n"
+                },
+                {
+                    "date": 1685872147951,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n         cname: blog.yinhaoyu.com\n     - name: Create Release\n       uses: actions/create-release@latest\n       env:\n-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n+        GITHUB_TOKEN: ${{ secrets.HEXO_DEPLOY }}\n       with:\n         tag_name: ${{ steps.replace.outputs.tagname }}\n         release_name: ${{ steps.replace.outputs.tagname }}\n         body: Automatic generated\n"
+                },
+                {
+                    "date": 1685872165493,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n       run: hexo clean && hexo g && hexo d\n     - name: Deploy\n       uses: peaceiris/actions-gh-pages@v3\n       with:\n-        github_token: ${{ secrets.GITHUB_TOKEN }}\n+        github_token: ${{ secrets.HEXO_DEPLOY }}\n         publish_dir: ./public\n         cname: blog.yinhaoyu.com\n     - name: Create Release\n       uses: actions/create-release@latest\n"
                 }
             ],
             "date": 1685871335400,

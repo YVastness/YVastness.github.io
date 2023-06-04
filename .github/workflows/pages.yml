@@ -30,13 +30,13 @@ jobs:
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.HEXO_DEPLOY }}
         publish_dir: ./public
         cname: blog.yinhaoyu.com
     - name: Create Release
       uses: actions/create-release@latest
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.HEXO_DEPLOY }}
       with:
         tag_name: ${{ steps.replace.outputs.tagname }}
         release_name: ${{ steps.replace.outputs.tagname }}
