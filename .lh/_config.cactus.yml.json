@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 13,
+            "activePatchIndex": 14,
             "patches": [
                 {
                     "date": 1685872917677,
@@ -60,6 +60,10 @@
                 {
                     "date": 1685875273308,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n nav:\n   home: /\n   articles: /archives/\n   projects: http://github.com/YVastness\n-  search: http://github.com/YVastness\n+  search: /search/\n   about: /about/\n \n \n # Links to your social media accounts.\n"
+                },
+                {
+                    "date": 1685876244900,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,11 @@\n   projects: http://github.com/YVastness\n   search: /search/\n   about: /about/\n \n-\n+disqus:\n+  enabled: true\n+  shortname: yinhaoyu\n # Links to your social media accounts.\n # The 'icon' keys should correspond to Fontawesome icon names\n # (see https://fontawesome.com/icons?d=gallery&s=brands);\n # only 'mail' is an exception.\n"
                 }
             ],
             "date": 1685872917677,
