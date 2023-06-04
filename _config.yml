@@ -99,6 +99,10 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: cactus # anzhiyu # landscape
 
+disqus:
+  enabled: true
+  shortname: yinhaoyu
+
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:

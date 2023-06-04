@@ -1,0 +1,50 @@
+{
+    "sourceFile": "themes/cactus/source/css/_colors/white.styl",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1685877041735,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1685877061270,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,15 @@\n // by @sergodeeva (https://github.com/sergodeeva)\n $color-background = #FFFFFF\n $color-footer-mobile-1 = darken($color-background, 2%)\n $color-footer-mobile-2 = darken($color-background, 10%)\n-$color-background-code = darken($color-background, 15%)\n+$color-background-code = darken($color-background, 2%)\n $color-border = #666\n-$color-scrollbar = #AAA\n $color-meta = #666\n $color-meta-code = lighten($color-meta, 10%)\n $color-link = rgba(212, 128, 170, 1)\n $color-text = #383838\n $color-accent-3 = #8c8c8c\n $color-accent-2 = #383838\n $color-accent-1 = #2bbc8a\n $color-quote = #2bbc8a\n-$highlight = hexo-config(\"highlight\") || \"atelier-cave-light\"\n+$highlight = hexo-config(\"highlight\") || \"atelier-cave-light\"\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1685877115887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n // by @sergodeeva (https://github.com/sergodeeva)\n $color-background = #FFFFFF\n $color-footer-mobile-1 = darken($color-background, 2%)\n $color-footer-mobile-2 = darken($color-background, 10%)\n-$color-background-code = darken($color-background, 2%)\n+$color-background-code = darken($color-background, 15%)\n $color-border = #666\n $color-meta = #666\n $color-meta-code = lighten($color-meta, 10%)\n $color-link = rgba(212, 128, 170, 1)\n"
+                },
+                {
+                    "date": 1685877126455,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n // by @sergodeeva (https://github.com/sergodeeva)\n $color-background = #FFFFFF\n $color-footer-mobile-1 = darken($color-background, 2%)\n $color-footer-mobile-2 = darken($color-background, 10%)\n-$color-background-code = darken($color-background, 15%)\n+$color-background-code = darken($color-background, 2%)\n $color-border = #666\n $color-meta = #666\n $color-meta-code = lighten($color-meta, 10%)\n $color-link = rgba(212, 128, 170, 1)\n"
+                },
+                {
+                    "date": 1685877134075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,16 @@\n // by @sergodeeva (https://github.com/sergodeeva)\n $color-background = #FFFFFF\n $color-footer-mobile-1 = darken($color-background, 2%)\n $color-footer-mobile-2 = darken($color-background, 10%)\n-$color-background-code = darken($color-background, 2%)\n+$color-background-code = darken($color-background, 15%)\n $color-border = #666\n+$color-scrollbar = #AAA\n $color-meta = #666\n $color-meta-code = lighten($color-meta, 10%)\n $color-link = rgba(212, 128, 170, 1)\n $color-text = #383838\n $color-accent-3 = #8c8c8c\n $color-accent-2 = #383838\n $color-accent-1 = #2bbc8a\n\\ No newline at end of file\n $color-quote = #2bbc8a\n-$highlight = hexo-config(\"highlight\") || \"atelier-cave-light\"\n+$highlight = hexo-config(\"highlight\") || \"atelier-cave-light\"\n"
+                },
+                {
+                    "date": 1685877139290,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n $color-footer-mobile-1 = darken($color-background, 2%)\n $color-footer-mobile-2 = darken($color-background, 10%)\n $color-background-code = darken($color-background, 15%)\n $color-border = #666\n-$color-scrollbar = #AAA\n $color-meta = #666\n $color-meta-code = lighten($color-meta, 10%)\n $color-link = rgba(212, 128, 170, 1)\n $color-text = #383838\n"
+                },
+                {
+                    "date": 1685877173407,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,16 @@\n // by @sergodeeva (https://github.com/sergodeeva)\n $color-background = #FFFFFF\n $color-footer-mobile-1 = darken($color-background, 2%)\n $color-footer-mobile-2 = darken($color-background, 10%)\n-$color-background-code = darken($color-background, 15%)\n+$color-background-code = darken($color-background, 2%)\n $color-border = #666\n+$color-scrollbar = #AAA\n $color-meta = #666\n $color-meta-code = lighten($color-meta, 10%)\n $color-link = rgba(212, 128, 170, 1)\n $color-text = #383838\n $color-accent-3 = #8c8c8c\n $color-accent-2 = #383838\n $color-accent-1 = #2bbc8a\n\\ No newline at end of file\n $color-quote = #2bbc8a\n-$highlight = hexo-config(\"highlight\") || \"atelier-cave-light\"\n+$highlight = hexo-config(\"highlight\") || \"atelier-cave-light\"\n"
+                },
+                {
+                    "date": 1685877195684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n // by @sergodeeva (https://github.com/sergodeeva)\n $color-background = #FFFFFF\n $color-footer-mobile-1 = darken($color-background, 2%)\n $color-footer-mobile-2 = darken($color-background, 10%)\n-$color-background-code = darken($color-background, 2%)\n+$color-background-code = darken($color-background, 3%)\n $color-border = #666\n $color-scrollbar = #AAA\n $color-meta = #666\n $color-meta-code = lighten($color-meta, 10%)\n@@ -12,5 +12,5 @@\n $color-accent-3 = #8c8c8c\n $color-accent-2 = #383838\n $color-accent-1 = #2bbc8a\n $color-quote = #2bbc8a\n-$highlight = hexo-config(\"highlight\") || \"atelier-cave-light\"\n\\ No newline at end of file\n+$highlight = hexo-config(\"highlight\") || \"atelier-cave-light\"\n"
+                },
+                {
+                    "date": 1685877219431,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n // by @sergodeeva (https://github.com/sergodeeva)\n $color-background = #FFFFFF\n $color-footer-mobile-1 = darken($color-background, 2%)\n $color-footer-mobile-2 = darken($color-background, 10%)\n-$color-background-code = darken($color-background, 3%)\n+$color-background-code = darken($color-background, 2%)\n $color-border = #666\n $color-scrollbar = #AAA\n $color-meta = #666\n $color-meta-code = lighten($color-meta, 10%)\n"
+                }
+            ],
+            "date": 1685877041735,
+            "name": "Commit-0",
+            "content": "// by @sergodeeva (https://github.com/sergodeeva)\n$color-background = #FFFFFF\n$color-footer-mobile-1 = darken($color-background, 2%)\n$color-footer-mobile-2 = darken($color-background, 10%)\n$color-background-code = darken($color-background, 15%)\n$color-border = #666\n$color-scrollbar = #AAA\n$color-meta = #666\n$color-meta-code = lighten($color-meta, 10%)\n$color-link = rgba(212, 128, 170, 1)\n$color-text = #383838\n$color-accent-3 = #8c8c8c\n$color-accent-2 = #383838\n$color-accent-1 = #2bbc8a\n$color-quote = #2bbc8a\n$highlight = hexo-config(\"highlight\") || \"atelier-cave-light\"\n"
+        }
+    ]
+}
