@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1685871335400,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1685871733129,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     - master\n jobs:\n   deploy:\n     name: hexo build & deploy\n-    runs-on: ubuntu-18.04\n+    runs-on: ubuntu-latest\n     steps:\n     - uses: actions/checkout@master\n       with:\n         submodules: true\n"
                 }
             ],
             "date": 1685871335400,
