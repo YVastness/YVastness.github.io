@@ -1,42 +1,42 @@
-name: deploying Hexo project to GitHub pages
-on:
-  push:
-    branches:
-      - master # master 分支有 push 行为时就触发这个 action
+name: Blog CI/CD
+
+on: [push, repository_dispatch]
 
 jobs:
-  build-and-deploy:
+  blog-cicd:
+    name: Hexo blog build & deploy
     runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
+    - name: Checkout codes
+      uses: actions/checkout@v2
 
-      # from: https://github.com/actions/setup-node
-      - name: Setup Node.js 12.x
-        uses: actions/setup-node@master
-        with:
-          node-version: "12.x"
+    - name: Setup node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
-      #安装依赖(包含yuque-hexo，此处无需安装) from https://github.com/x-cold/yuque-hexo
-      - name: Install dependencies
-        run: |
-          npm install hexo-cli -g
-          npm install
-          npm install hexo-deployer-git --save
-          
-      # 生成可访问的文档
-      - name: hexo generate
-        run: |
-          hexo clean
-          hexo g
-          
-      # 生成pages且推送到文件仓库 from https://github.com/peaceiris/actions-gh-pages
-      - name: Deploy hexo to Github pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          deploy_key: ${{ secrets.HEXO_DEPLOY }} # 此处为 hexo-deploy-key
-          external_repository: YVastness/YVastness.github.io
-          publish_branch: master
-          publish_dir: ./public
-          commit_message: deploy githubPage
-          # commit_message: ${{ github.event.head_commit.message }}
+    - name: Install dependencies
+      run: |
+        npm install hexo-cli -g
+        npm install
+
+    - name: Generate files
+      run: hexo generate
+
+    - name: Deploy blog
+      run: |
+        git clone "https://${{ secrets.GH_REF }}" deploy_git
+        mv ./deploy_git/.git ./public
+        cd ./public
+        git config user.name "YVastness"
+        git config user.email "1916286435@qq.com"
+        git add .
+        git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
+        git push --force --quiet "https://${{ secrets.GH_TOKEN }}@${{ secrets.GH_REF }}" main:main

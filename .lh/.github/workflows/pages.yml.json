@@ -1,0 +1,26 @@
+{
+    "sourceFile": ".github/workflows/pages.yml",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1685868104679,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1685868112635,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,11 +24,9 @@\n \n     - name: Install dependencies\n       run: |\n         npm install hexo-cli -g\n-        npm install yuque-hexo -g\n         npm install\n-        yuque-hexo sync\n \n     - name: Generate files\n       run: hexo generate\n \n"
+                },
+                {
+                    "date": 1685868135338,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n       run: |\n         git clone \"https://${{ secrets.GH_REF }}\" deploy_git\n         mv ./deploy_git/.git ./public\n         cd ./public\n-        git config user.name \"填入自己的github用户名\"\n-        git config user.email \"填入自己的github邮箱\"\n+        git config user.name \"YVastness\"\n+        git config user.email \"1916286435@qq.com\"\n         git add .\n         git commit -m \"GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')\"\n         git push --force --quiet \"https://${{ secrets.GH_TOKEN }}@${{ secrets.GH_REF }}\" main:main\n"
+                }
+            ],
+            "date": 1685868104679,
+            "name": "Commit-0",
+            "content": "name: Blog CI/CD\n\non: [push, repository_dispatch]\n\njobs:\n  blog-cicd:\n    name: Hexo blog build & deploy\n    runs-on: ubuntu-latest\n    env:\n      TZ: Asia/Shanghai\n    steps:\n    - name: Checkout codes\n      uses: actions/checkout@v2\n\n    - name: Setup node\n      uses: actions/setup-node@v1\n      with:\n        node-version: '12.x'\n    - name: Cache node modules\n      uses: actions/cache@v1\n      with:\n        path: ~/.npm\n        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}\n\n    - name: Install dependencies\n      run: |\n        npm install hexo-cli -g\n        npm install yuque-hexo -g\n        npm install\n        yuque-hexo sync\n\n    - name: Generate files\n      run: hexo generate\n\n    - name: Deploy blog\n      run: |\n        git clone \"https://${{ secrets.GH_REF }}\" deploy_git\n        mv ./deploy_git/.git ./public\n        cd ./public\n        git config user.name \"填入自己的github用户名\"\n        git config user.email \"填入自己的github邮箱\"\n        git add .\n        git commit -m \"GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')\"\n        git push --force --quiet \"https://${{ secrets.GH_TOKEN }}@${{ secrets.GH_REF }}\" main:main\n"
+        }
+    ]
+}
