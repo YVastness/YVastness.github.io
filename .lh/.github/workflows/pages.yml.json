@@ -1,0 +1,18 @@
+{
+    "sourceFile": ".github/workflows/pages.yml",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1685871335400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1685871335400,
+            "name": "Commit-0",
+            "content": "name: Hexo CICD\non:\n  push:\n    branches:\n    - master\njobs:\n  deploy:\n    name: hexo build & deploy\n    runs-on: ubuntu-18.04\n    steps:\n    - uses: actions/checkout@master\n      with:\n        submodules: true\n    - uses: actions/setup-node@master\n      with:\n        node-version: 12.x  \n    - name: replace cdn url\n      id: replace\n      run: |\n        tagname=$(date +%y%j%H%M)\n        sed -i \"s/hexoblog/hexoblog@$tagname/g\" _config.yml\n        sed -i \"s/hexoblog/hexoblog@$tagname/g\" themes/cactus/_config.yml\n        echo \"::set-output name=tagname::$tagname\"        \n    - name: Installation\n      run: |\n        npm install\n        npm install -g hexo-cli gulp        \n    - name: Generate\n      run: hexo clean && hexo g && gulp && hexo d\n    - name: Deploy\n      uses: peaceiris/actions-gh-pages@v3\n      with:\n        github_token: ${{ secrets.GITHUB_TOKEN }}\n        publish_dir: ./public\n        cname: g.blog.zu1k.com\n    - name: Create Release\n      uses: actions/create-release@latest\n      env:\n        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      with:\n        tag_name: ${{ steps.replace.outputs.tagname }}\n        release_name: ${{ steps.replace.outputs.tagname }}\n        body: Automatic generated\n        draft: false\n        prerelease: true\n"
+        }
+    ]
+}
