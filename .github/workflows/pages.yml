@@ -19,7 +19,7 @@ jobs:
       run: |
         tagname=$(date +%y%j%H%M)
         sed -i "s/hexoblog/hexoblog@$tagname/g" _config.yml
-        sed -i "s/hexoblog/hexoblog@$tagname/g" themes/cactus/_config.yml
+        sed -i "s/hexoblog/hexoblog@$tagname/g" _config.cactus.yml
         echo "::set-output name=tagname::$tagname"        
     - name: Installation
       run: |
