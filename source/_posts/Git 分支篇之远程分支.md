@@ -1,3 +1,8 @@
+---
+title: Git 分支篇之远程分支
+date: 2022-11-11 13:23:05
+tags: Git
+---
 > 本文转载自[Pro Git(中文版)](https://gitee.com/progit/3-Git-%E5%88%86%E6%94%AF.html#3.5-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF)
 
   **本节讲解命令**：`git push <远程仓库> <本地分支>:<远程分支>`、`git fetch <远程仓库>`、`git pull <远程仓库> <远程分支>:<本地分支>`。

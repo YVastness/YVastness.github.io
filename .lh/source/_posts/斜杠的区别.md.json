@@ -1,0 +1,22 @@
+{
+    "sourceFile": "source/_posts/斜杠的区别.md",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1685875400909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1685875421582,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n ---\n-title: Git 增强命令\n-date: 2022-12-02 13:23:05\n+title: / 和 /* 和 /** 的区别\n+date: 2022-12-01 13:23:05\n tags: SpringMVC\n ---\n # / 和 /* 和 /** 的区别\n \n"
+                }
+            ],
+            "date": 1685875400909,
+            "name": "Commit-0",
+            "content": "---\ntitle: Git 增强命令\ndate: 2022-12-02 13:23:05\ntags: SpringMVC\n---\n# / 和 /* 和 /** 的区别\n\n### 一、亲测 / 和 /\\* 区别\n\n在 springboot 中建了一个过滤器，测试：\n\n![](https://raw.githubusercontent.com/YVastness/picture-upload/main/1001313-20190212212942450-433613516.png)\n\n当请求为`/user/login`的时候可以被拦截，当为`/page/login.html`页面的时候不拦截：\n\n![](https://raw.githubusercontent.com/YVastness/picture-upload/main/1001313-20190212213608480-1119617961.png)\n\n 当请求为`/user/login`的时候可以被拦截，当为`/page/login.html`页面的时候也会被拦截。\n\n**所以综上，/不会拦截页面，只会拦截路径，/\\* 会拦截路径和页面。**\n\n### 二、/\\*  和  /\\*\\*\n\n/\\* 是拦截所有的文件夹，不包含子文件夹  \n/\\*\\* 是拦截所有的文件夹及里面的子文件夹\n\n相当于/\\*只有后面一级\n\n/\\*\\* 可以包含多级"
+        }
+    ]
+}

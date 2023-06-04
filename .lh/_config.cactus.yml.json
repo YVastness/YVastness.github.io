@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 13,
             "patches": [
                 {
                     "date": 1685872917677,
@@ -20,6 +20,46 @@
                 {
                     "date": 1685873303890,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -95,9 +95,9 @@\n logo:\n   enabled: true\n   width: 50\n   height: 50\n-  url: /images/app_mw_weblogic_domain.png\n+  url: /images/logo.png\n   gravatar: false\n # 鼠标移动到logo上，发生变化\n   grayout: false\n \n"
+                },
+                {
+                    "date": 1685874196686,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -205,5 +205,7 @@\n   jquery: https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js\n   clipboard: https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js\n   font_awesome: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\n   justified_gallery_css: https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css\n-  justified_gallery_js: https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js\n\\ No newline at end of file\n+  justified_gallery_js: https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js\n+\n+highlight: COLORSCHEME_NAME\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1685874234482,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -207,5 +207,5 @@\n   font_awesome: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\n   justified_gallery_css: https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css\n   justified_gallery_js: https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js\n \n-highlight: COLORSCHEME_NAME\n\\ No newline at end of file\n+highlight: atelier-cave-light\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1685874280947,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -195,9 +195,9 @@\n # Fill in you Gravatar email or hash if you want to use your gravatar as the\n # logo and/or favicons of you website.\n # To generate hash: `$ echo -n \"name@email.com\" | md5`.\n gravatar:\n-  email: name@email.com\n+  email: 1916286435@qq.com\n   hash: d41d8cd98f00b204e9800998ecf8427e\n \n # loads libraries and styles from CDN instead or relying on local files\n cdn:\n"
+                },
+                {
+                    "date": 1685874650473,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -207,5 +207,12 @@\n   font_awesome: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\n   justified_gallery_css: https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css\n   justified_gallery_js: https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js\n \n-highlight: atelier-cave-light\n\\ No newline at end of file\n+highlight:\n+enable: false\n+\n+prism_plugin:\n+mode: 'preprocess'    # realtime/preprocess\n+theme: 'tomorrow'\n+line_number: false    # default false\n+custom_css:\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1685874714535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -206,13 +206,4 @@\n   clipboard: https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js\n   font_awesome: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\n   justified_gallery_css: https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css\n   justified_gallery_js: https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js\n-\n-highlight:\n-enable: false\n-\n-prism_plugin:\n-mode: 'preprocess'    # realtime/preprocess\n-theme: 'tomorrow'\n-line_number: false    # default false\n-custom_css:\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1685874818724,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -206,4 +206,13 @@\n   clipboard: https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js\n   font_awesome: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\n   justified_gallery_css: https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css\n   justified_gallery_js: https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js\n+\n+highlight:\n+enable: false\n+\n+prism_plugin:\n+mode: 'preprocess'    # realtime/preprocess\n+theme: 'tomorrow'\n+line_number: true    # default false\n+custom_css:\n"
+                },
+                {
+                    "date": 1685874925940,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -205,14 +205,5 @@\n   jquery: https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js\n   clipboard: https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js\n   font_awesome: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\n   justified_gallery_css: https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css\n-  justified_gallery_js: https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js\n-\n-highlight:\n-enable: false\n-\n-prism_plugin:\n-mode: 'preprocess'    # realtime/preprocess\n-theme: 'tomorrow'\n-line_number: true    # default false\n-custom_css:\n+  justified_gallery_js: https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1685874968928,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -128,9 +128,9 @@\n # Set the color scheme.\n # Available color schemes are 'dark', 'light', 'classic' and 'white'.\n # Alternatively, add your own custom color scheme to source/css/_colors.\n colorscheme: white\n-\n+highlight: COLORSCHEME_NAME\n # Maximal width of the page in rem units.\n page_width: 48\n \n \n"
+                },
+                {
+                    "date": 1685875248890,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n nav:\n   home: /\n   articles: /archives/\n   projects: http://github.com/YVastness\n+  search: http://github.com/YVastness\n   about: /about/\n \n \n # Links to your social media accounts.\n@@ -128,9 +129,9 @@\n # Set the color scheme.\n # Available color schemes are 'dark', 'light', 'classic' and 'white'.\n # Alternatively, add your own custom color scheme to source/css/_colors.\n colorscheme: white\n-highlight: COLORSCHEME_NAME\n+highlight: tomorrow\n # Maximal width of the page in rem units.\n page_width: 48\n \n \n"
+                },
+                {
+                    "date": 1685875273308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n nav:\n   home: /\n   articles: /archives/\n   projects: http://github.com/YVastness\n-  search: http://github.com/YVastness\n+  search: /search/\n   about: /about/\n \n \n # Links to your social media accounts.\n"
                 }
             ],
             "date": 1685872917677,

@@ -17,6 +17,7 @@ nav:
   home: /
   articles: /archives/
   projects: http://github.com/YVastness
+  search: /search/
   about: /about/
 
 
@@ -129,7 +130,7 @@ favicon:
 # Available color schemes are 'dark', 'light', 'classic' and 'white'.
 # Alternatively, add your own custom color scheme to source/css/_colors.
 colorscheme: white
-
+highlight: tomorrow
 # Maximal width of the page in rem units.
 page_width: 48
 
@@ -196,7 +197,7 @@ umami_analytics:
 # logo and/or favicons of you website.
 # To generate hash: `$ echo -n "name@email.com" | md5`.
 gravatar:
-  email: name@email.com
+  email: 1916286435@qq.com
   hash: d41d8cd98f00b204e9800998ecf8427e
 
 # loads libraries and styles from CDN instead or relying on local files

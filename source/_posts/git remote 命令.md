@@ -1,3 +1,8 @@
+---
+title: git remote 命令
+date: 2023-3-03 13:23:05
+tags: Git
+---
 ``git remote``命令用于在远程仓库的操作。
 
 显示所有远程仓库：

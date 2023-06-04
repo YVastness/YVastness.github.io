@@ -1,0 +1,26 @@
+{
+    "sourceFile": "source/_posts/git remote 命令.md",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1685875656589,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1685875693066,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-title: git mv 和 mv 的区别\n+title: git remote 命令\n date: 2023-3-02 13:23:05\n tags: Git\n ---\n ``git remote``命令用于在远程仓库的操作。\n"
+                },
+                {
+                    "date": 1685875699884,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n ---\n title: git remote 命令\n-date: 2023-3-02 13:23:05\n+date: 2023-3-03 13:23:05\n tags: Git\n ---\n ``git remote``命令用于在远程仓库的操作。\n \n"
+                }
+            ],
+            "date": 1685875656589,
+            "name": "Commit-0",
+            "content": "---\ntitle: git mv 和 mv 的区别\ndate: 2023-3-02 13:23:05\ntags: Git\n---\n``git remote``命令用于在远程仓库的操作。\n\n显示所有远程仓库：\n\n```bash\ngit remote -v\n```\n\n以下我们先载入远程仓库，然后查看信息：\n\n```bash\n$ git clone https://github.com/tianqixin/runoob-git-test  \n$ cd runoob-git-test\n$ git remote -v  \norigin  https://github.com/tianqixin/runoob-git-test (fetch)  \norigin  https://github.com/tianqixin/runoob-git-test (push)\n```\n\n**origin** 为远程地址的别名。\n\n显示某个远程仓库的信息：\n\n```bash\ngit remote show [remote]\n```\n\n例如：\n\n```bash\n$ git remote show https://github.com/tianqixin/runoob-git-test\n* remote https://github.com/tianqixin/runoob-git-test\n  Fetch URL: https://github.com/tianqixin/runoob-git-test\n  Push  URL: https://github.com/tianqixin/runoob-git-test\n  HEAD branch: master\n  Local ref configured for 'git push':\n    master pushes to master (local out of date)\n```\n\n添加远程版本库：\n\n```\ngit remote add [shortname] [url]\n```\n\nshortname 为本地的版本库，例如：\n\n```bash\n# 提交到 Github\n$ git remote add origin git@github.com:tianqixin/runoob-git-test.git\n$ git push -u origin master\n```\n\n其他相关命令：\n\n```bash\ngit remote rm name  # 删除远程仓库\ngit remote rename old_name new_name  # 修改仓库名\n```\n"
+        }
+    ]
+}

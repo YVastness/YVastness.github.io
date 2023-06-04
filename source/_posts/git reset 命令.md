@@ -1,3 +1,8 @@
+---
+title: git reset 命令
+date: 2023-3-05 13:23:05
+tags: Git
+---
 `git reset` 命令用于回退版本，可以指定退回某一次提交的版本。
 
 git reset 命令语法格式如下：

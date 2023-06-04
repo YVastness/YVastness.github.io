@@ -1,0 +1,22 @@
+{
+    "sourceFile": "source/_posts/git reset 命令.md",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1685875731869,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1685875739616,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n ---\n title: git reset 命令\n-date: 2023-3-03 13:23:05\n+date: 2023-3-05 13:23:05\n tags: Git\n ---\n `git reset` 命令用于回退版本，可以指定退回某一次提交的版本。\n \n"
+                }
+            ],
+            "date": 1685875731869,
+            "name": "Commit-0",
+            "content": "---\ntitle: git reset 命令\ndate: 2023-3-03 13:23:05\ntags: Git\n---\n`git reset` 命令用于回退版本，可以指定退回某一次提交的版本。\n\ngit reset 命令语法格式如下：\n\n```bash\ngit reset [--soft | --mixed | --hard] [HEAD]\n```\n\n**\\--mixed** 为默认，可以不用带该参数，用于重置暂存区的文件与上一次的提交(commit)保持一致，工作区文件内容保持不变。\n\n```bash\ngit reset  [HEAD] \n```\n\n实例：\n\n```\n$ git reset HEAD^            # 回退所有内容到上一个版本  \n$ git reset HEAD^ hello.php  # 回退 hello.php 文件的版本到上一个版本  \n$ git  reset  052e           # 回退到指定版本\n```\n\n**\\--soft** 参数用于回退到某个版本：\n\n```bash\ngit reset --soft HEAD\n```\n\n实例：\n\n```bash\n$ git reset --soft HEAD~3   # 回退上上上一个版本 \n```\n\n**\\--hard** 参数撤销工作区中所有未提交的修改内容，将暂存区与工作区都回到上一次版本，并删除之前的所有信息提交：\n\n```bash\ngit reset --hard HEAD\n```\n\n实例：\n\n```bash\n$ git reset --hard HEAD~3  # 回退上上上一个版本  \n$ git reset –hard bae128  # 回退到某个版本回退点之前的所有信息。 \n$ git reset --hard origin/master    # 将本地的状态回退到和远程的一样 \n```\n\n**注意：**谨慎使用 **–-hard** 参数，它会删除回退点之前的所有信息。\n\n**HEAD 说明：**\n\n-   HEAD 表示当前版本\n    \n-   HEAD^ 上一个版本\n    \n-   HEAD^^ 上上一个版本\n    \n-   HEAD^^^ 上上上一个版本\n    \n-   以此类推...\n    \n\n可以使用 ～数字表示\n\n-   HEAD~0 表示当前版本\n    \n-   HEAD~1 上一个版本\n    \n-   HEAD^2 上上一个版本\n    \n-   HEAD^3 上上上一个版本\n    \n-   以此类推...\n    \n\n### git reset HEAD\n\ngit reset HEAD 命令用于取消已缓存的内容。\n\n我们先改动文件 README 文件，内容如下：\n\n```bash\n# Runoob Git 测试\n# 菜鸟教程 \n```\n\nhello.php 文件修改为：\n\n```bash\n<?php\necho '菜鸟教程：www.runoob.com';\necho '菜鸟教程：www.runoob.com';\necho '菜鸟教程：www.runoob.com';\n?>\n```\n\n现在两个文件修改后，都提交到了缓存区，我们现在要取消其中一个的缓存，操作如下：\n\n```bash\n$ git status -s\n    M README\n    M hello.php\n$ git add .\n$ git status -s\nM  README\nM  hello.php\n$ git reset HEAD hello.php \nUnstaged changes after reset:\nM    hello.php\n$ git status -s\nM  README\n    M hello.php\n```\n\n现在你执行 git commit，只会将 README 文件的改动提交，而 hello.php 是没有的。\n\n```bash\n$ git commit -m '修改'\n[master f50cfda] 修改\n    1 file changed, 1 insertion(+)\n$ git status -s\n    M hello.php\n```\n\n可以看到 hello.php 文件的修改并未提交。\n\n这时我们可以使用以下命令将 hello.php 的修改提交：\n\n```bash\n$ git commit -am '修改 hello.php 文件'\n[master 760f74d] 修改 hello.php 文件\n    1 file changed, 1 insertion(+)\n$ git status\nOn branch master\nnothing to commit, working directory clean\n```\n\n简而言之，执行 git reset HEAD 以取消之前 git add 添加，但不希望包含在下一提交快照中的缓存。\n"
+        }
+    ]
+}
