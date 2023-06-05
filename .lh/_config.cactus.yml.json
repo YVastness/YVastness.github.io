@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 17,
+            "activePatchIndex": 18,
             "patches": [
                 {
                     "date": 1685872917677,
@@ -76,6 +76,10 @@
                 {
                     "date": 1685877068028,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -127,9 +127,9 @@\n \n # Set the color scheme.\n # Available color schemes are 'dark', 'light', 'classic' and 'white'.\n # Alternatively, add your own custom color scheme to source/css/_colors.\n-colorscheme: dark\n+colorscheme: white\n highlight: tomorrow\n # Maximal width of the page in rem units.\n page_width: 48\n \n"
+                },
+                {
+                    "date": 1685931067403,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -67,9 +67,9 @@\n \n # Customize the copyright years\n # Note: if start_year/end_year not provided, will use current year.\n copyright:\n-  start_year: 2016\n+  start_year: 2023\n   end_year:\n \n # Customize the 404 page\n # Options:\n"
                 }
             ],
             "date": 1685872917677,
