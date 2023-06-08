@@ -1,7 +1,8 @@
 ---
 title: git remote 命令
 date: 2023-3-03 13:23:05
-tags: Git
+category: Git
+tags: [Git,Git远程仓库]
 ---
 ``git remote``命令用于在远程仓库的操作。
 

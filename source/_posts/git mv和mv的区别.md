@@ -1,7 +1,8 @@
 ---
 title: git mv 和 mv 的区别
 date: 2023-3-02 13:23:05
-tags: Git
+category: Git
+tags: [Git]
 ---
 `git mv`的执行过程：
 

@@ -1,6 +1,7 @@
 ---
 title: Mybatis中#{}和${}的区别
 date: 2022-11-12 12:24:46
+category: Mybatis
 tags: Mybatis
 ---
 简明的解释:

@@ -1,6 +1,7 @@
 ---
 title: MySQL执行计划(explain命令)中Type的浅析
 date: 2022-11-11 12:24:46
+category: MySQL
 tags: MySQL
 ---
 ### Type 的相关知识点：

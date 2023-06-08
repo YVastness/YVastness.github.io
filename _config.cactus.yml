@@ -16,6 +16,7 @@ direction: ltr
 nav:
   home: /
   articles: /archives/
+  categories: /categories/
   projects: http://github.com/YVastness
   search: /search/
   about: /about/
